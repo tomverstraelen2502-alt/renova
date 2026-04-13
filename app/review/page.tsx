@@ -1,7 +1,7 @@
 "use client";
 
+import { Suspense, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
 
 type Review = {
   id: string;
@@ -12,15 +12,17 @@ type Review = {
   comment: string;
 };
 
-export default function ReviewPage() {
+function ReviewPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const target = searchParams.get("target") || "";
   const toolName = searchParams.get("tool") || "";
-  const author = typeof window !== "undefined"
-    ? localStorage.getItem("renova-current-user") || ""
-    : "";
+
+  const author = useMemo(() => {
+    if (typeof window === "undefined") return "";
+    return localStorage.getItem("renova-current-user") || "";
+  }, []);
 
   const [score, setScore] = useState("5");
   const [comment, setComment] = useState("");
@@ -58,7 +60,8 @@ export default function ReviewPage() {
         </h1>
 
         <p className="mt-4 text-green-700">
-          Share your feedback about the exchange for <span className="font-semibold">{toolName}</span>.
+          Share your feedback about the exchange for{" "}
+          <span className="font-semibold">{toolName}</span>.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
@@ -102,5 +105,13 @@ export default function ReviewPage() {
         </form>
       </div>
     </main>
+  );
+}
+
+export default function ReviewPage() {
+  return (
+    <Suspense fallback={<main className="mx-auto min-h-screen max-w-3xl px-8 py-16">Loading...</main>}>
+      <ReviewPageContent />
+    </Suspense>
   );
 }
