@@ -20,7 +20,7 @@ type Service = {
 
 export default function ServicesPage() {
   const [services, setServices] = useState<Service[]>([]);
-  const [currentUser, setCurrentUser] = useState("Tom");
+  const [currentUser, setCurrentUser] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 const [statusFilter, setStatusFilter] = useState("all");
 const [locationFilter, setLocationFilter] = useState("all");
@@ -78,24 +78,22 @@ const [sortOption, setSortOption] = useState("default");
 
     try {
       const stored = localStorage.getItem("renova-services");
-      const storedUser = localStorage.getItem("renova-current-user");
+const storedUser = localStorage.getItem("renova-current-user");
 
-      if (stored) {
-        const parsed = JSON.parse(stored).map((s: Service) => ({
-          ...s,
-          status: s.status || "available",
-        }));
-        setServices(parsed);
-      } else {
-        localStorage.setItem("renova-services", JSON.stringify(defaultServices));
-        setServices(defaultServices);
-      }
+if (stored) {
+  const parsed = JSON.parse(stored).map((s: Service) => ({
+    ...s,
+    status: s.status || "available",
+  }));
+  setServices(parsed);
+} else {
+  setServices([]);
+}
 
-      if (storedUser) {
-        setCurrentUser(storedUser);
-      } else {
-        localStorage.setItem("renova-current-user", "Tom");
-        setCurrentUser("Tom");
+if (storedUser) {
+  setCurrentUser(storedUser);
+} else {
+  setCurrentUser("");
       }
     } catch (error) {
       console.error(error);

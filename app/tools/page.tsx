@@ -20,7 +20,7 @@ type Tool = {
 
 export default function ToolsPage() {
   const [tools, setTools] = useState<Tool[]>([]);
-  const [currentUser, setCurrentUser] = useState("Tom");
+  const [currentUser, setCurrentUser] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 const [statusFilter, setStatusFilter] = useState("all");
 const [locationFilter, setLocationFilter] = useState("all");
@@ -97,25 +97,23 @@ const [sortOption, setSortOption] = useState("default");
 
     try {
       const storedTools = localStorage.getItem("renova-tools");
-      const storedUser = localStorage.getItem("renova-current-user");
+const storedUser = localStorage.getItem("renova-current-user");
 
-      if (storedTools) {
-        const parsedTools = JSON.parse(storedTools).map((tool: Tool) => ({
-          ...tool,
-          status: tool.status || "available",
-        }));
-        setTools(parsedTools);
-      } else {
-        localStorage.setItem("renova-tools", JSON.stringify(defaultTools));
-        setTools(defaultTools);
-      }
+if (storedTools) {
+  const parsedTools = JSON.parse(storedTools).map((tool: Tool) => ({
+    ...tool,
+    status: tool.status || "available",
+  }));
+  setTools(parsedTools);
+} else {
+  setTools([]);
+}
 
-      if (storedUser) {
-        setCurrentUser(storedUser);
-      } else {
-        localStorage.setItem("renova-current-user", "Tom");
-        setCurrentUser("Tom");
-      }
+if (storedUser) {
+  setCurrentUser(storedUser);
+} else {
+  setCurrentUser("");
+}
     } catch (error) {
       console.error("Error reading localStorage:", error);
       localStorage.setItem("renova-tools", JSON.stringify(defaultTools));

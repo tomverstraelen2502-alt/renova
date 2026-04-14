@@ -20,7 +20,7 @@ type Material = {
 
 export default function MaterialsPage() {
   const [materials, setMaterials] = useState<Material[]>([]);
-const [currentUser, setCurrentUser] = useState("Tom");
+const [currentUser, setCurrentUser] = useState("");
 const [searchTerm, setSearchTerm] = useState("");
 const [statusFilter, setStatusFilter] = useState("all");
 const [locationFilter, setLocationFilter] = useState("all");
@@ -96,30 +96,26 @@ const [sortOption, setSortOption] = useState("default");
     ];
 
     try {
-      const storedMaterials = localStorage.getItem("renova-materials");
-      const storedUser = localStorage.getItem("renova-current-user");
-      if (storedMaterials) {
-        const parsedMaterials = JSON.parse(storedMaterials).map(
-          (material: Material) => ({
-            ...material,
-            status: material.status || "available",
-          })
-        );
-        setMaterials(parsedMaterials);
-      } else {
-        localStorage.setItem(
-          "renova-materials",
-          JSON.stringify(defaultMaterials)
-        );
-        setMaterials(defaultMaterials);
-      }
+     const storedMaterials = localStorage.getItem("renova-materials");
+const storedUser = localStorage.getItem("renova-current-user");
 
-      if (storedUser) {
-        setCurrentUser(storedUser);
-      } else {
-        localStorage.setItem("renova-current-user", "Tom");
-        setCurrentUser("Tom");
-      }
+if (storedMaterials) {
+  const parsedMaterials = JSON.parse(storedMaterials).map(
+    (material: Material) => ({
+      ...material,
+      status: material.status || "available",
+    })
+  );
+  setMaterials(parsedMaterials);
+} else {
+  setMaterials([]);
+}
+
+if (storedUser) {
+  setCurrentUser(storedUser);
+} else {
+  setCurrentUser("");
+}
     } catch (error) {
       console.error("Error reading localStorage:", error);
       localStorage.setItem("renova-materials", JSON.stringify(defaultMaterials));
