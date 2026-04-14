@@ -26,6 +26,7 @@ export default function AddToolPage() {
   const [category, setCategory] = useState("Power tool");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,7 +55,11 @@ export default function AddToolPage() {
     const updatedTools = [...parsedTools, newTool];
     localStorage.setItem("renova-tools", JSON.stringify(updatedTools));
 
-    router.push("/tools");
+    setSuccessMessage("Service added successfully!");
+
+setTimeout(() => {
+  router.push("/services");
+}, 1200);
   };
 
   return (
@@ -71,7 +76,11 @@ export default function AddToolPage() {
         <p className="mt-4 text-green-700">
           Add a tool you can lend and help other users renovate more sustainably.
         </p>
-
+        {successMessage && (
+  <div className="mb-6 rounded-2xl bg-green-100 px-4 py-3 text-center font-semibold text-green-700 animate-pulse">
+    {successMessage}
+  </div>
+)}
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div>
             <label className="mb-2 block text-sm font-medium text-green-700">

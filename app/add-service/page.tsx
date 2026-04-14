@@ -11,6 +11,7 @@ export default function AddServicePage() {
   const [points, setPoints] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -36,8 +37,13 @@ export default function AddServicePage() {
 
     const updated = [...parsed, newService];
     localStorage.setItem("renova-services", JSON.stringify(updated));
+    setSuccessMessage("Added successfully!");
 
-    router.push("/services");
+    setSuccessMessage("Service added successfully!");
+
+setTimeout(() => {
+  router.push("/services");
+}, 1200);
   };
 
   return (
@@ -45,7 +51,11 @@ export default function AddServicePage() {
       <h1 className="text-4xl font-bold text-green-700">
         Add a service
       </h1>
-
+      {successMessage && (
+  <div className="mb-6 rounded-2xl bg-green-100 px-4 py-3 text-center font-semibold text-green-700 animate-pulse">
+    {successMessage}
+  </div>
+)}
       <form onSubmit={handleSubmit} className="mt-8 space-y-6">
         <input
           placeholder="Service name"

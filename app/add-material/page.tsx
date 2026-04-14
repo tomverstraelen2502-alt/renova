@@ -26,6 +26,7 @@ export default function AddMaterialPage() {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -56,7 +57,11 @@ export default function AddMaterialPage() {
     const updatedMaterials = [...parsedMaterials, newMaterial];
     localStorage.setItem("renova-materials", JSON.stringify(updatedMaterials));
 
-    router.push("/materials");
+    setSuccessMessage("Service added successfully!");
+
+setTimeout(() => {
+  router.push("/services");
+}, 1200);
   };
 
   return (
@@ -73,6 +78,12 @@ export default function AddMaterialPage() {
         <p className="mt-4 text-green-700">
           Add reusable materials and help reduce renovation waste.
         </p>
+
+        {successMessage && (
+  <div className="mb-6 rounded-2xl bg-green-100 px-4 py-3 text-center font-semibold text-green-700 animate-pulse">
+    {successMessage}
+  </div>
+)}
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div>
