@@ -35,8 +35,9 @@ export default function LoginPage() {
     }
 
     localStorage.setItem("renova-current-user", matchedUser.name);
-    localStorage.setItem("renova-current-user-data", JSON.stringify(matchedUser));
-    localStorage.setItem("renova-points", String(matchedUser.points));
+localStorage.setItem("renova-current-user-email", matchedUser.email);
+localStorage.setItem("renova-current-user-data", JSON.stringify(matchedUser));
+localStorage.setItem("renova-points", String(matchedUser.points));
 
     router.push("/dashboard");
   };

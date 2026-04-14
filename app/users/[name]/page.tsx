@@ -138,7 +138,7 @@ export default function UserProfilePage({
       <div className="rounded-[28px] bg-white p-8 shadow-sm ring-1 ring-stone-200">
         <div className="flex flex-col items-center text-center">
           <img
-            src={user.photo}
+            src={user.photo && user.photo.trim() !== "" ? user.photo : "/neutre.jpg"}
             alt={user.name}
             className="h-28 w-28 rounded-full object-cover"
           />

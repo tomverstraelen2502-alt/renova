@@ -27,19 +27,21 @@ export default function SignupPage() {
     e.preventDefault();
 
     const newUser: User = {
-      name,
-      email,
+      name: name.trim(),
+      email: email.trim(),
       password,
-      city,
-      role,
-      photo: photo || "/tomphoto.jpg",
+      city: city.trim(),
+      role: role.trim(),
+      photo: photo.trim() || "",
       points: 10,
     };
 
     const existingUsers = localStorage.getItem("renova-users");
     const parsedUsers: User[] = existingUsers ? JSON.parse(existingUsers) : [];
 
-    const emailAlreadyExists = parsedUsers.some((user) => user.email === email);
+    const emailAlreadyExists = parsedUsers.some(
+      (user) => user.email === newUser.email
+    );
 
     if (emailAlreadyExists) {
       alert("An account with this email already exists.");
@@ -50,6 +52,7 @@ export default function SignupPage() {
 
     localStorage.setItem("renova-users", JSON.stringify(updatedUsers));
     localStorage.setItem("renova-current-user", newUser.name);
+    localStorage.setItem("renova-current-user-email", newUser.email);
     localStorage.setItem("renova-current-user-data", JSON.stringify(newUser));
     localStorage.setItem("renova-points", String(newUser.points));
 
