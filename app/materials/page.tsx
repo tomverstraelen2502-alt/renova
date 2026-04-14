@@ -24,6 +24,7 @@ const [currentUser, setCurrentUser] = useState("Tom");
 const [searchTerm, setSearchTerm] = useState("");
 const [statusFilter, setStatusFilter] = useState("all");
 const [locationFilter, setLocationFilter] = useState("all");
+const [sortOption, setSortOption] = useState("default");
 
   const saveMaterials = (updatedMaterials: Material[]) => {
     setMaterials(updatedMaterials);
@@ -158,7 +159,7 @@ const filteredMaterials = materials.filter((material) => {
             <h1 className="mt-2 text-4xl font-bold text-green-700">
               Available materials
             </h1>
-            <div className="mb-8 grid gap-4 rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-stone-200 md:grid-cols-3">
+            <div className="mb-8 grid gap-4 rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-stone-200 md:grid-cols-4">
   <div>
     <label className="mb-2 block text-sm font-medium text-green-700">
       Search
@@ -205,6 +206,20 @@ const filteredMaterials = materials.filter((material) => {
       ))}
     </select>
   </div>
+  <div>
+  <label className="mb-2 block text-sm font-medium text-green-700">
+    Sort by
+  </label>
+  <select
+    value={sortOption}
+    onChange={(e) => setSortOption(e.target.value)}
+    className="w-full rounded-xl border border-stone-300 px-4 py-3 text-stone-900"
+  >
+    <option value="default">Default</option>
+    <option value="low">Points: low to high</option>
+    <option value="high">Points: high to low</option>
+  </select>
+</div>
 </div>
             <p className="mt-3 max-w-2xl text-green-700">
               Browse reusable materials shared by the Renova community.

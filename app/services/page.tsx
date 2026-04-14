@@ -24,6 +24,7 @@ export default function ServicesPage() {
   const [searchTerm, setSearchTerm] = useState("");
 const [statusFilter, setStatusFilter] = useState("all");
 const [locationFilter, setLocationFilter] = useState("all");
+const [sortOption, setSortOption] = useState("default");
 
   const saveServices = (updatedServices: Service[]) => {
     setServices(updatedServices);
@@ -127,8 +128,8 @@ const filteredServices = services.filter((service) => {
   return (
     <main className="min-h-screen px-8 py-12">
       <section className="mx-auto max-w-6xl">
-        <div className="mb-8 flex flex-col gap-4 md:flex-row md:justify-between">
-          <div>
+       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                 <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-green-700">
               Services
             </p>
@@ -136,7 +137,9 @@ const filteredServices = services.filter((service) => {
               Available services
             </h1>
 
-            <div className="mb-8 grid gap-4 rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-stone-200 md:grid-cols-3">
+                 <div className="mb-8 grid gap-4 rounded-[24px] bg-white p-6 shadow-sm ring-1 ring-stone-200 md:grid-cols-4">
+
+  {/* SEARCH */}
   <div>
     <label className="mb-2 block text-sm font-medium text-green-700">
       Search
@@ -146,10 +149,11 @@ const filteredServices = services.filter((service) => {
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
       placeholder="Search a service"
-      className="w-full rounded-xl border border-stone-300 px-4 py-3 text-stone-900"
+      className="w-full rounded-xl border border-stone-300 px-4 py-3 text-stone-900 outline-none focus:border-green-700"
     />
   </div>
 
+  {/* STATUS */}
   <div>
     <label className="mb-2 block text-sm font-medium text-green-700">
       Status
@@ -157,7 +161,7 @@ const filteredServices = services.filter((service) => {
     <select
       value={statusFilter}
       onChange={(e) => setStatusFilter(e.target.value)}
-      className="w-full rounded-xl border border-stone-300 px-4 py-3 text-stone-900"
+      className="w-full rounded-xl border border-stone-300 px-4 py-3 text-stone-900 outline-none focus:border-green-700"
     >
       <option value="all">All</option>
       <option value="available">Available</option>
@@ -166,6 +170,7 @@ const filteredServices = services.filter((service) => {
     </select>
   </div>
 
+  {/* LOCATION */}
   <div>
     <label className="mb-2 block text-sm font-medium text-green-700">
       Location
@@ -173,7 +178,7 @@ const filteredServices = services.filter((service) => {
     <select
       value={locationFilter}
       onChange={(e) => setLocationFilter(e.target.value)}
-      className="w-full rounded-xl border border-stone-300 px-4 py-3 text-stone-900"
+      className="w-full rounded-xl border border-stone-300 px-4 py-3 text-stone-900 outline-none focus:border-green-700"
     >
       <option value="all">All locations</option>
       {availableLocations.map((location) => (
@@ -183,6 +188,23 @@ const filteredServices = services.filter((service) => {
       ))}
     </select>
   </div>
+
+  {/* SORT */}
+  <div>
+    <label className="mb-2 block text-sm font-medium text-green-700">
+      Sort by
+    </label>
+    <select
+      value={sortOption}
+      onChange={(e) => setSortOption(e.target.value)}
+      className="w-full rounded-xl border border-stone-300 px-4 py-3 text-stone-900"
+    >
+      <option value="default">Default</option>
+      <option value="low">Points: low to high</option>
+      <option value="high">Points: high to low</option>
+    </select>
+  </div>
+
 </div>
 
             <p className="mt-3 text-green-700">
@@ -192,7 +214,7 @@ const filteredServices = services.filter((service) => {
 
          <a
             href="/add-service"
-            className="inline-flex items-center justify-center rounded-full bg-green-700 px-5 py-2 text-sm font-semibold text-white transition hover:bg-green-800"
+            className="inline-flex rounded-full bg-green-700 px-5 py-3 font-semibold text-white transition hover:bg-green-800"
             >
             Add a service
             </a>
