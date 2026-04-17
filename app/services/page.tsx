@@ -41,7 +41,7 @@ export default function ServicesPage() {
     location: "Ans",
     description: "Assembly of IKEA or other furniture.",
     image:
-      "https://images.unsplash.com/photo-1581091012184-5c9c3d8c4f5f?auto=format&fit=crop&w=800&q=80",
+      "https://tse2.mm.bing.net/th/id/OIP.svy12RKMVfFuuhwPg6GjAgHaFh?pid=Api",
     owner: "Hugo",
     status: "available",
   },

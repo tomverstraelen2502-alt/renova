@@ -101,7 +101,7 @@ const [sortOption, setSortOption] = useState("default");
         category: "Hand tool",
         description: "Ideal for painting or ceiling work.",
         image:
-          "https://images.unsplash.com/photo-1581147036324-c1c5c6b98d4f?auto=format&fit=crop&w=800&q=80",
+          "https://tse4.mm.bing.net/th/id/OIP.4GiGDavIfOb37aWrm6mg9wHaHa?pid=Api",
         owner: "Hugo",
         isUserTool: false,
         status: "available",
@@ -114,7 +114,7 @@ const [sortOption, setSortOption] = useState("default");
         category: "Heavy equipment",
         description: "Available for bigger renovation projects.",
         image:
-          "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80",
+          "https://tse4.mm.bing.net/th/id/OIP.F-elETrxdASsFf_IbD6ICQHaHa?pid=Api",
         owner: "Lucien",
         isUserTool: false,
         status: "available",

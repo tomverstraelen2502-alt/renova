@@ -29,7 +29,7 @@ export default function MaterialsPage() {
     location: "Liège",
     description: "Leftover paint in good condition for small interior works.",
     image:
-      "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80",
+      "https://tse4.mm.bing.net/th/id/OIP.4tB2JzQj7WSrsTABuF7NJQHaHa?pid=Api",
     owner: "Lucien",
     isUserMaterial: false,
     status: "available",
@@ -42,7 +42,7 @@ export default function MaterialsPage() {
     location: "Ans",
     description: "Reusable wooden planks for DIY and renovation projects.",
     image:
-      "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80",
+      "https://tse1.explicit.bing.net/th/id/OIP.LlsmT-kJyeX7apcoJu7NKQHaHa?pid=Api",
     owner: "Hugo",
     isUserMaterial: false,
     status: "available",
