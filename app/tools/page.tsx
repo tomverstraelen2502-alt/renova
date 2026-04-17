@@ -117,9 +117,9 @@ if (storedUser) {
     } catch (error) {
       console.error("Error reading localStorage:", error);
       localStorage.setItem("renova-tools", JSON.stringify(defaultTools));
-      localStorage.setItem("renova-current-user", "Tom");
+      localStorage.setItem("renova-current-user", "");
       setTools(defaultTools);
-      setCurrentUser("Tom");
+      setCurrentUser("");
     }
   }, []);
 
