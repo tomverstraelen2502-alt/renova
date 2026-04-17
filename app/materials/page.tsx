@@ -20,6 +20,34 @@ type Material = {
 
 export default function MaterialsPage() {
   const [materials, setMaterials] = useState<Material[]>([]);
+  const defaultMaterials: Material[] = [
+  {
+    id: "1",
+    name: "White paint",
+    quantity: "2 pots",
+    points: 4,
+    location: "Liège",
+    description: "Leftover paint in good condition for small interior works.",
+    image:
+      "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=800&q=80",
+    owner: "Lucien",
+    isUserMaterial: false,
+    status: "available",
+  },
+  {
+    id: "2",
+    name: "Wood planks",
+    quantity: "6 pieces",
+    points: 6,
+    location: "Ans",
+    description: "Reusable wooden planks for DIY and renovation projects.",
+    image:
+      "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80",
+    owner: "Hugo",
+    isUserMaterial: false,
+    status: "available",
+  },
+];
 const [currentUser, setCurrentUser] = useState("");
 const [searchTerm, setSearchTerm] = useState("");
 const [statusFilter, setStatusFilter] = useState("all");
@@ -108,7 +136,8 @@ if (storedMaterials) {
   );
   setMaterials(parsedMaterials);
 } else {
-  setMaterials([]);
+  localStorage.setItem("renova-materials", JSON.stringify(defaultMaterials));
+  setMaterials(defaultMaterials);
 }
 
 if (storedUser) {

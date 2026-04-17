@@ -20,6 +20,32 @@ type Tool = {
 
 export default function ToolsPage() {
   const [tools, setTools] = useState<Tool[]>([]);
+  const defaultTools: Tool[] = [
+  {
+    id: "1",
+    name: "Electric drill",
+    category: "Power tools",
+    points: 8,
+    location: "Liège",
+    description: "Reliable drill for renovation and DIY work.",
+    image:
+      "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=800&q=80",
+    owner: "Lucien",
+    status: "available",
+  },
+  {
+    id: "2",
+    name: "Ladder",
+    category: "Access equipment",
+    points: 5,
+    location: "Herstal",
+    description: "Stable ladder for painting or ceiling work.",
+    image:
+      "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=800&q=80",
+    owner: "Hugo",
+    status: "available",
+  },
+];
   const [currentUser, setCurrentUser] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 const [statusFilter, setStatusFilter] = useState("all");
@@ -106,7 +132,8 @@ if (storedTools) {
   }));
   setTools(parsedTools);
 } else {
-  setTools([]);
+  localStorage.setItem("renova-tools", JSON.stringify(defaultTools));
+  setTools(defaultTools);
 }
 
 if (storedUser) {

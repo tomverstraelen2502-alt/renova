@@ -20,6 +20,32 @@ type Service = {
 
 export default function ServicesPage() {
   const [services, setServices] = useState<Service[]>([]);
+  const defaultServices: Service[] = [
+  {
+    id: "1",
+    name: "Painting help",
+    duration: "3 hours",
+    points: 5,
+    location: "Liège",
+    description: "Help with painting walls or ceilings.",
+    image:
+      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80",
+    owner: "Lucien",
+    status: "available",
+  },
+  {
+    id: "2",
+    name: "Furniture assembly",
+    duration: "2 hours",
+    points: 4,
+    location: "Ans",
+    description: "Assembly of IKEA or other furniture.",
+    image:
+      "https://images.unsplash.com/photo-1581091012184-5c9c3d8c4f5f?auto=format&fit=crop&w=800&q=80",
+    owner: "Hugo",
+    status: "available",
+  },
+];
   const [currentUser, setCurrentUser] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 const [statusFilter, setStatusFilter] = useState("all");
@@ -87,7 +113,8 @@ if (stored) {
   }));
   setServices(parsed);
 } else {
-  setServices([]);
+  localStorage.setItem("renova-services", JSON.stringify(defaultServices));
+  setServices(defaultServices);
 }
 
 if (storedUser) {
